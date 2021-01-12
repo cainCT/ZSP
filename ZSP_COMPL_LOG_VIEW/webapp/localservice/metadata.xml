@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSUPPLIER_PORTAL_SRV" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="PO_List" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNum"/>
+                </Key>
+                <Property Name="PoNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="PO Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="VendorId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor #" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PoDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="PO Date" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Vendor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Fob" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="FoB" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FobTxt" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="FoB Text" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PayTerms" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Payt Terms" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PayTermsTxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Payt Terms Text" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BuyerName" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Buyer Name" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BuyerPhone" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Buyer Phone" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BuyerEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="Buyer email" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShipToTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Ship To Text" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShipVia" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Ship Via" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShipViaTxt" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Ship Via Text" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="Compliance_Log" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SupplierId"/>
+                    <PropertyRef Name="SupplierTxt"/>
+                    <PropertyRef Name="BuyerName"/>
+                    <PropertyRef Name="PoNum"/>
+                </Key>
+                <Property Name="SupplierId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SupplierTxt" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BuyerName" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Salesperson" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PoNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Acknowledged" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="DateAck" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="DATE_ACK" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TimeAck" Type="Edm.Time" Nullable="false" Precision="0" sap:label="TIME_ACK" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Cond1" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond2" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond3" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond4" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond5" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond6" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond7" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond8" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond9" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Cond10" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="DateCond" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="DATE_COND" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="TimeCond" Type="Edm.Time" Nullable="false" Precision="0" sap:label="TIME_COND" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Compliance_Texts" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Num"/>
+                </Key>
+                <Property Name="Num" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Num" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AcknowledgeTxt" Type="Edm.String" Nullable="false" MaxLength="256" sap:label="Ack Txt" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShortText" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Header text" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Active" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Active" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZSUPPLIER_PORTAL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PO_ListSet" EntityType="ZSUPPLIER_PORTAL_SRV.PO_List" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Compliance_LogSet" EntityType="ZSUPPLIER_PORTAL_SRV.Compliance_Log" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Compliance_TextsSet" EntityType="ZSUPPLIER_PORTAL_SRV.Compliance_Texts" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://msmad-d11db01.vtx.vtxaero.com:8000/sap/opu/odata/sap/ZSUPPLIER_PORTAL_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="http://msmad-d11db01.vtx.vtxaero.com:8000/sap/opu/odata/sap/ZSUPPLIER_PORTAL_SRV/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

@@ -1,0 +1,149 @@
+<mvc:View controllerName="com.vtx.supplier.compl.ZSP_COMPL_LOG_VIEW.controller.ComplianceView" 
+xmlns:mvc="sap.ui.core.mvc" xmlns:fb="sap.ui.comp.filterbar" xmlns="sap.m"
+	displayBlock="true" >
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Title text="{i18n>title}"/>
+							<ToolbarSpacer/>
+							<Label text=""/>
+							<ToolbarSpacer width="3%"/>
+						</Toolbar>
+						<fb:FilterBar showFilterConfiguration="false" useToolbar="false" showGoOnFB="false">
+							<FlexBox height="auto" alignItems="Start" justifyContent="Start">
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text="Date PO Viewed From"/>
+									<DatePicker id="idFrom" placeholder="From..." valueFormat="yyyy-MM-dd" displayFormat="medium" 
+                                    change="handleDateFromChange" class="sapUiSmallMarginBottom" width="200px"/>
+								</FlexBox>
+								<ToolbarSpacer width="20px"/>
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text="Date PO Viewed To"/>
+									<DatePicker id="idTo" width="200px" placeholder="To..." valueFormat="yyyy-MM-dd" displayFormat="medium"
+										change="handleDateToChange" class="sapUiSmallMarginBottom"/>
+								</FlexBox>
+								<ToolbarSpacer width="20px"/>
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text="Supplier"/>
+                                    <Input id="idSupplierSearchbox" placeholder="Supplier Name" width="200px"/>
+								</FlexBox>
+								<ToolbarSpacer width="20px"/>
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text="Buyer"/>
+                                    <Input id="idBuyerNameSearchbox" placeholder="Buyer Name" width="200px"/>
+								</FlexBox>
+								<ToolbarSpacer width="20px"/>
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text=""/>
+									<Button text="Clear" type="Transparent" press="onClear"/>
+								</FlexBox>
+								<ToolbarSpacer width="20px"/>
+								<FlexBox direction="Column" alignItems="Start">
+									<Label text=""/>
+									<Button text="Search" type="Emphasized" press="onSearch"/>
+								</FlexBox>
+							</FlexBox>
+						</fb:FilterBar>
+						<OverflowToolbar class="topMargin">
+							<ToolbarSpacer/>
+							<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed" class="blackIcon"/>
+							<Button text="{i18n>buttonPrint}" press="onDataExportPDF"/>
+							<ToolbarSpacer width="20px"/>
+						</OverflowToolbar>
+						<Table id="idListtable" growing="true" fixedLayout="true" 
+                        selectionChange="onSelectionChange" mode="MultiSelect" 
+                        items="{
+                            path: '/Compliance_LogSet',
+                            parameters: {
+									$count: true
+
+								}
+                        }"
+                        >
+							<columns>
+								<Column id="idSupplier" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idSupplierLabel" text="{i18n>SupplierLabel}" class="columnHeader"/>
+								</Column>
+								<Column id="idSupplierID" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idSupplierIDLabel" text="{i18n>SupplierIDLabel}" class="columnHeader" wrapping="true"/>
+								</Column>
+								<Column id="idBuyerName" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idBuyerNameLabel" text="{i18n>BuyerNameLabel}" class="columnHeader" wrapping="true"/>
+								</Column>
+								<Column id="idPONumber" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idPONumberLabel" text="{i18n>PONumberLabel}" class="columnHeader" wrapping="true"/>
+								</Column>
+								<Column id="idViewedPO" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idViewedPOLabel" text="{i18n>ViewedPOLabel}" class="columnHeader" wrapping="true" tooltip="{i18n>tooltipAck}"/>
+								</Column>
+								<Column id="idTimestamp" visible="true" width="auto" styleClass="whitecol">
+									<Label id="idTimestampLabel" text="{i18n>TimestampLabel}" class="columnHeader" wrapping="true"/>
+								</Column>
+								<Column id="idCol1" visible="{Vis>/1}" width="auto" styleClass="dualheader" tooltip="{TT>/1}">
+									<Label id="idLbl1" text="{Txt>/1}" class="columnHeader" wrapping="true" visible="{Vis>/1}"/>
+								</Column>
+								<Column id="idCol2" visible="{Vis>/2}" width="auto" styleClass="dualheader" tooltip="{TT>/2}">
+									<Label id="idLbl2" text="{Txt>/2}" class="columnHeader" wrapping="true" visible="{Vis>/2}"/>
+								</Column>
+                                <Column id="idCol3" visible="{Vis>/3}" width="auto" styleClass="dualheader" tooltip="{TT>/3}">
+									<Label id="idLbl3" text="{Txt>/3}" class="columnHeader" wrapping="true" visible="{Vis>/3}"/>
+								</Column>
+                                <Column id="idCol4" visible="{Vis>/4}" width="auto" styleClass="dualheader" tooltip="{TT>/4}">
+									<Label id="idLbl4" text="{Txt>/4}" class="columnHeader" wrapping="true" visible="{Vis>/4}"/>
+								</Column>
+                                <Column id="idCol5" visible="{Vis>/5}" width="auto" styleClass="dualheader" tooltip="{TT>/5}">
+									<Label id="idLbl5" text="{Txt>/5}" class="columnHeader" wrapping="true" visible="{Vis>/5}"/>
+								</Column>
+                                <Column id="idCol6" visible="{Vis>/6}" width="auto" styleClass="dualheader" tooltip="{TT>/6}">
+									<Label id="idLbl6" text="{Txt>/6}" class="columnHeader" wrapping="true" visible="{Vis>/6}"/>
+								</Column>
+                                <Column id="idCol7" visible="{Vis>/7}" width="auto" styleClass="dualheader" tooltip="{TT>/7}">
+									<Label id="idLbl7" text="{Txt>/7}" class="columnHeader" wrapping="true" visible="{Vis>/7}"/>
+								</Column>
+                                <Column id="idCol8" visible="{Vis>/8}" width="auto" styleClass="dualheader" tooltip="{TT>/8}">
+									<Label id="idLbl8" text="{Txt>/8}" class="columnHeader" wrapping="true" visible="{Vis>/8}"/>
+								</Column>
+                                <Column id="idCol9" visible="{Vis>/9}" width="auto" styleClass="dualheader" tooltip="{TT>/9}">
+									<Label id="idLbl9" text="{Txt>/9}" class="columnHeader" wrapping="true" visible="{Vis>/9}"/>
+								</Column>
+                                <Column id="idCol10" visible="{Vis>/10}" width="auto" styleClass="dualheader" tooltip="{TT>/10}">
+									<Label id="idLbl10" text="{Txt>/10}" class="columnHeader" wrapping="true" visible="{Vis>/10}"/>
+								</Column>
+								<Column id="idTime" visible="true" width="auto" styleClass="dualheader">
+									<Label id="idTimeLabel" text="{i18n>TimeLabel}" class="columnHeader" wrapping="true"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem class="dualcol">
+									<cells>
+										<Label text="{SupplierTxt}" wrapping="true"/>
+										<Label text="{SupplierId}" wrapping="true"/>
+										<Label text="{BuyerName}" wrapping="true"/>
+										<Label text="{PoNum}" wrapping="true"/>
+                                        <Text text="{ path : 'Acknowledged', formatter : '.formatIsX' }" />
+                                        <Text text="{ path: 'DateAck', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium'}}" />										
+										<Text text="{ path : 'Cond1', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/1}"/>
+										<Text text="{ path : 'Cond2', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/2}"/>
+										<Text text="{ path : 'Cond3', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/3}"/>
+										<Text text="{ path : 'Cond4', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/4}"/>
+                                        <Text text="{ path : 'Cond5', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/5}"/>
+										<Text text="{ path : 'Cond6', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/6}"/>
+										<Text text="{ path : 'Cond7', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/7}"/>
+										<Text text="{ path : 'Cond8', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/8}"/>
+										<Text text="{ path : 'Cond9', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/9}"/>
+										<Text text="{ path : 'Cond10', formatter : '.formatIsX' }" wrapping="true" visible="{Vis>/10}"/>
+                                        <Text text="{ path: 'DateCond', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium'}}" />										
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

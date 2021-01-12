@@ -1,0 +1,78 @@
+ID: mta_ZSP_COMPL_LOG_VIEW
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.7
+modules:
+  - name: mta-zsp-compl-log-view-approuter
+    type: approuter.nodejs
+    path: mta-zsp-compl-log-view-approuter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: mta_ZSP_COMPL_LOG_VIEW_html5_repo_runtime
+      - name: uaa_mta_ZSP_COMPL_LOG_VIEW
+      - name: portal_resources_mta_ZSP_COMPL_LOG_VIEW
+  - name: mta_ZSP_COMPL_LOG_VIEW_ui_deployer
+    type: com.sap.html5.application-content
+    path: mta_ZSP_COMPL_LOG_VIEW_ui_deployer
+    requires:
+      - name: mta_ZSP_COMPL_LOG_VIEW_html5_repo_host
+    build-parameters:
+      requires:
+        - name: ZSP_COMPL_LOG_VIEW
+          artifacts:
+            - './*'
+          target-path: resources/ZSP_COMPL_LOG_VIEW
+  - name: ZSP_COMPL_LOG_VIEW
+    type: html5
+    path: ZSP_COMPL_LOG_VIEW
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: fiori
+    type: com.sap.application.portal.content
+    path: fiori
+    requires:
+      - name: portal_resources_mta_ZSP_COMPL_LOG_VIEW
+        parameters:
+          service-key:
+            name: content-deploy-key
+            config:
+              content-endpoint: developer
+          content-target: true
+      - name: uaa_mta_ZSP_COMPL_LOG_VIEW
+      - name: mta_ZSP_COMPL_LOG_VIEW_html5_repo_host
+      - name: mta_ZSP_COMPL_LOG_VIEW_ui_deployer
+resources:
+  - name: mta_ZSP_COMPL_LOG_VIEW_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: mta_ZSP_COMPL_LOG_VIEW_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: uaa_mta_ZSP_COMPL_LOG_VIEW
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_mta_ZSP_COMPL_LOG_VIEW
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
+  - name: portal_resources_mta_ZSP_COMPL_LOG_VIEW
+    parameters:
+      service-plan: standard
+      service: portal
+    type: org.cloudfoundry.managed-service
